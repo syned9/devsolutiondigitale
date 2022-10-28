@@ -1,4 +1,4 @@
-from flask import current_app as flask_app
+import os
 
 DEBUG = False
-SQLALCHEMY_DATABASE_URI = flask_app.config['JAWSDB_URL']
+SQLALCHEMY_DATABASE_URI = os.environ['JAWSDB_URL']
