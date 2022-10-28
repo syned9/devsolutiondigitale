@@ -4,8 +4,8 @@ from sqlalchemy import exc
 flask_app = create_app('prod')
 with flask_app.app_context():
     from app import routes
-    import pymysql
-    pymysql.install_as_MySQLdb()
+    # import pymysql
+    # pymysql.install_as_MySQLdb()
     engine = db.get_connection()
     db.createTable(engine)
 if __name__ == "__main__":
