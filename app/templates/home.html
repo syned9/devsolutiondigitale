@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block header %}
+    <header class="header">
+        <h1>{{title}}</h1>
+        <!-- <img href="../static/img/outil-crayon.png"> -->
+        <div class="navImg">
+            <img src="{{ url_for('static', filename='img/icons8-pencil-64.png') }}">
+            <!-- <a target="_blank" href="https://icons8.com/icon/GsJSD26n6pVR/pencil">Pencil</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+            <a href="{{ url_for('adminAdd') }}"><img src="{{ url_for('static', filename='img/icons8-add-64.png') }}"></a>
+            <!-- <a target="_blank" href="https://icons8.com/icon/a5XXGsaRdoCF/add">Add</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+        </div> 
+    </header>
+{% endblock %}
+{% block main %}
+<main>
+    <div class="containerHome">
+        <div class="head"></div>
+        <!-- <div class="body">{{list}}</div> -->
+        <div class="body">
+            {% for transaction in transactionList %}
+            <!-- <div class="item_transaction"> -->
+                <a class="item_transaction" href="{{ url_for('adminDel', id=transaction.id) }}">
+                    <span class="cryptoHome">
+                        {% if transaction.symbole == 'BTC' %}
+                            <img src="{{ url_for('static', filename='img/bitcoin.png') }}">
+                        {% endif %}
+                        <p><strong>{{ transaction.symbole }}</strong> ({{ transaction.name }})</p>
+                    </span>
+                </a>
+            <!-- </div> -->
+            {% endfor %}
+        </div>
+    </div>
+</main> 
+{% endblock %}

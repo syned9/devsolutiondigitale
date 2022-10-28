@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block header %}
+    <header class="header center">
+        <a class="close" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/icons8-effacer-60.png') }}"></a>
+        <h1>{{title}}</h1>
+    </header>
+{% endblock %}
+{% block main %}
+<main>
+    <div class="container">
+        <form method="post" class="formCenter">
+            <div>
+                <select name="crypto" id="crypto" onchange="document.getElementById('prix').value = document.getElementById('crypto').value.split(';')[1]" placeholder="Sélectionner une crypto" required>
+                    <option value="">Sélectionner une crypto</option>
+                    {% for crypto in list %}
+                        <option value="{{ crypto.name }};{{ crypto.quote.EUR.price }};{{ crypto.symbol }}">{{ crypto.name }}</option>
+                    {% endfor %}
+                </select>
+                <!-- <label for="body">Body</label> -->
+                <input name="quantite" id="quantite" placeholder="Quantité" required>
+                <input name="prix" id="prix" placeholder="Prix d'achat" required>
+            </div>
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
+</main>
+{% endblock %}

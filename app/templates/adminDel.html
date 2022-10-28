@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block header %}
+    <header class="header center">
+        <a class="close" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/icons8-effacer-60.png') }}"></a>
+        <h1>{{title}}</h1>
+    </header>
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+            {% if transaction %}
+                <form method="post" class="formCenter">
+                    <div>
+                        <input name="crypto" id="crypto" value="{{ transaction.symbole}} ({{ transaction.name}})" disabled>
+                        <input name="quantite" id="quantite" value="{{ transaction.quantite}}" disabled>
+                    </div>
+                    <input type="submit" class="white" value="Valider">
+                </form>
+            {% else %}
+                <p>Aucune transaction à supprimer</p>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
