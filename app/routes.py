@@ -5,11 +5,27 @@ from app import transaction
 
 @app.route('/')
 def home():
-    # transactionList=transaction.transactionList()
-    # return transactionList
+    list=api.getInfoListCrypto()
+    transactionList=transaction.transactionList()
+    benefice=0
+    prixAchat=0
+    prixApi=0
+    diff={}
+    for cryptoTransaction in transactionList:
+        for cryptoApi in list:
+            if cryptoTransaction.name == cryptoApi['name']:
+                if cryptoTransaction.prix > cryptoApi['quote']['EUR']['price']:
+                    diff[cryptoTransaction.name] = 'moins'
+                else:
+                    diff[cryptoTransaction.name] = 'plus'
+                prixAchat += cryptoTransaction.prix * cryptoTransaction.quantite
+                prixApi += cryptoApi['quote']['EUR']['price'] * cryptoTransaction.quantite
+    benefice = prixApi - prixAchat
     return render_template( 'home.html' ,
                            title="Crypto Tracker",
                            description="description",
+                           benefice=benefice,
+                           diff=diff,
                            transactionList=transaction.transactionList())
 
 @app.route('/admin/add', methods=('GET', 'POST'))

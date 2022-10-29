@@ -1,7 +1,7 @@
 from app import create_app, db
 from sqlalchemy import exc
 
-flask_app = create_app('prod')
+flask_app = create_app('pro')
 with flask_app.app_context():
     from app import routes
     # import pymysql
