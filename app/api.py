@@ -3,6 +3,10 @@ import json
 import time
 import pprint
 
+"""
+It gets the latest information about the top 10 cryptocurrencies from the CoinMarketCap API
+:return: A list of dictionaries.
+"""
 def getInfoListCrypto():
     try :
         url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?convert=EUR&limit=10"
